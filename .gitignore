@@ -1,1 +1,21 @@
 _site/
+
+.autotest
+.DS_Store
+pkg/*
+tags
+*/tags
+*~
+.chef
+
+.bundle
+# RVM and RBENV ruby version files
+.rbenv-version
+.rvmrc
+.ruby-version
+.ruby-gemset
+
+# IDE files
+.project
+
+
