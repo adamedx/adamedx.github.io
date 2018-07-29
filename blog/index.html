@@ -7,7 +7,6 @@ title: adamedx
     {% for post in site.posts %}
     <li>
       <span>{{ post.date | date_to_string }}</span> » <b><h3><a href="{{ post.url }}" title="{{ post.title }}"><b>{{ post.title }}</h3></b></a></b>
-      <br>
       {{ post.excerpt | remove: '<p>' | remove: '</p>' }}
       <a href = "{{ post.url }}">More...</a>
       <p></p>
