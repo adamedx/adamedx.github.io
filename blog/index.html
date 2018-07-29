@@ -6,7 +6,7 @@ title: adamedx
   <ul class="posts">
     {% for post in site.posts %}
     <li>
-      <span>{{ post.date | date_to_string }}</span> » <b><h3><a href="{{ post.url }}" title="{{ post.title }}"><b>{{ post.title }}</h3></b></a></b>
+      <span>{{ post.date | date_to_string }}</span> » <h3><a href="{{ post.url }}" title="{{ post.title }}"><b>{{ post.title }}</h3></b></a>
       {{ post.excerpt | remove: '<p>' | remove: '</p>' }}
       <a href = "{{ post.url }}">More...</a>
       <p></p>
