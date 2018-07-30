@@ -7,12 +7,20 @@ layout: feed
 	<title>adamedx blog</title>
 	<link href="https://adamedx.github.io/blog/atom.xml" rel="self"/>
 	<link href="https://adamedx.github.io/blog"/>
+  	<link href="https://adamedx.github.io"/>
 	<updated>{{ site.time | date_to_xmlschema }}</updated>
 	<id>https://adamedx.github.io</id>
 	<author>
 		<name>Adam Edwards</name>
 		<email>adamedx@gmail.com</email>
 	</author>
+
+	<entry>
+	  <title>Main page</title>
+	  <link href="https://adamedx.github.io"/>
+	  <id>https://adamedx.github.io</id>
+	  <content type="html"></content>
+	</entry>
 
 	{% for post in site.posts %}
 		<entry>
