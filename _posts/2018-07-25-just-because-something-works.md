@@ -4,7 +4,7 @@ date: 2018-07-26 06:15:00 -0700
 categories: oss software
 ---
 
-These days I have a fun open source project to entertain me after hours. It does have some relationship to my professional endeavors, but mostly it's just an enjoyable way for me to learn and practice some skills.
+These days I have a fun [open source project](https://github.com/adamedx/poshgraph) to entertain me after hours. It does have some relationship to my professional endeavors, but mostly it's just an enjoyable way for me to learn and practice some skills.
 
 I think it's healthy for software engineers who have been in the profession for a minute to find their own "voice" on both the process of making software and the software itself. You might find you're able to step outside of the engineering box and exercise some product management muscle for instance. And of course you can scratch the itch of answering the question of what would happen if *you* got to call all the shots on a project -- it would be wildly successfuly of course, right?
 
