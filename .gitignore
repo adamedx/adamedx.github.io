@@ -2,11 +2,13 @@ _site/
 
 .autotest
 .DS_Store
+.chef
 pkg/*
 tags
 */tags
 *~
-.chef
+.#*
+*#
 
 .bundle
 # RVM and RBENV ruby version files
