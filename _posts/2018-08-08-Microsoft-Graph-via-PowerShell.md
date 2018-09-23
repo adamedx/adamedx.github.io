@@ -8,7 +8,7 @@ tags: powershell microsoft-graph poshgraph autographps aad-graph powershell-grap
 
 Yes, you can absolutely access [the Microsoft Graph](https://graph.microsoft.io) through PowerShell, and you don't need to wait for an official SDK -- it (mostly) works out of the box!
 
-I've been working with Graph, the API gateway for Microsoft's vast array of services, over the last year. While PowerShell is a great fit for Graph, I ended up developing the [AutoGraphPS OSS project](https://github.com/adamedx/poshgraph) (previously named *PoshGraph*) in an effort make the experience of Graph + PowerShell as seamless as it should be. At its heart, the implementation is quite straightforward -- however, the barriers one must hurdle to get to the easy part are one reason I made the investment in a dedicated project.
+I've been working with Graph, the API gateway for Microsoft's vast array of services, over the last year. While PowerShell is a great fit for Graph, I ended up developing the [AutoGraphPS OSS project](https://github.com/adamedx/autographps) (previously named *PoshGraph*) in an effort make the experience of Graph + PowerShell as seamless as it should be. At its heart, the implementation is quite straightforward -- however, the barriers one must hurdle to get to the easy part are one reason I made the investment in a dedicated project.
 
 ## The basics -- tokens and REST
 First, there is already a good write-up on how one can [access Graph from PowerShell](https://blog.kloud.com.au/2016/09/13/leveraging-the-microsoft-graph-api-with-powershell-and-oauth-2-0/) -- it's worth browsing before I dive into a targeted version of the approach. We'll cover the technique in the following sample I've created for explanatory purposes:
