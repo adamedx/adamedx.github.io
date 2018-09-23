@@ -2,20 +2,20 @@
 title: "Microsoft Graph via PowerShell Part 1"
 date: 2018-08-08 21:51:00 -0700
 categories: softwarengineering
-tags: powershell microsoft-graph poshgraph aad-graph powershell-graph msgraph azure
+tags: powershell microsoft-graph poshgraph autographps aad-graph powershell-graph msgraph azure
 ---
 *This is the initial post in a series on PowerShell and the Graph.*
 
 Yes, you can absolutely access [the Microsoft Graph](https://graph.microsoft.io) through PowerShell, and you don't need to wait for an official SDK -- it (mostly) works out of the box!
 
-I've been working with Graph, the API gateway for Microsoft's vast array of services, over the last year. While PowerShell is a great fit for Graph, I ended up developing the [PoshGraph OSS project](https://github.com/adamedx/poshgraph) in an effort make the experience of Graph + PowerShell as seamless as it should be. At its heart, the implementation is quite straightforward -- however, the barriers one must hurdle to get to the easy part are one reason I made the investment in a dedicated project.
+I've been working with Graph, the API gateway for Microsoft's vast array of services, over the last year. While PowerShell is a great fit for Graph, I ended up developing the [AutoGraphPS OSS project](https://github.com/adamedx/poshgraph) (previously named *PoshGraph*) in an effort make the experience of Graph + PowerShell as seamless as it should be. At its heart, the implementation is quite straightforward -- however, the barriers one must hurdle to get to the easy part are one reason I made the investment in a dedicated project.
 
 ## The basics -- tokens and REST
 First, there is already a good write-up on how one can [access Graph from PowerShell](https://blog.kloud.com.au/2016/09/13/leveraging-the-microsoft-graph-api-with-powershell-and-oauth-2-0/) -- it's worth browsing before I dive into a targeted version of the approach. We'll cover the technique in the following sample I've created for explanatory purposes:
 
 * [Demonstration of Microsoft Graph through PowerShell](https://github.com/adamedx/PowerShellGraphDemo)
 
-The sample provides cmdlets that allow you to invoke any Graph method by specifying its URI (e.g. `https://graph.microsoft.com/v1.0/me`). The cmdlets will also return the JSON in raw form or as deserializeed PowerShell objects. In itself this can function as a primitive "PowerShell Graph SDK." This forms the basis of [PoshGraph](https://github.com/adamedx/poshgraph). Here's the recipe from the demo:
+The sample provides cmdlets that allow you to invoke any Graph method by specifying its URI (e.g. `https://graph.microsoft.com/v1.0/me`). The cmdlets will also return the JSON in raw form or as deserializeed PowerShell objects. In itself this can function as a primitive "PowerShell Graph SDK." This forms the basis of [AutoGraphPS](https://github.com/adamedx/autographps). Here's the recipe from the demo:
 
 1. [Register an Azure Active Directory application](https://apps.dev.microsoft.com) (one time only)
 2. [Get an access token](https://github.com/adamedx/PowerShellGraphDemo/blob/133a1e0c2859abc8bcf31da3ce9c9372f2eb4dd3/PowerShellGraphDemo.ps1#L226) at runtime for your application with permissions for the call you'd like to make
@@ -119,7 +119,7 @@ echo $response.Content.jobTitle >> MyJobs.txt
 
 You can access members or elements of the response using `.` or `[]` notation if the object is an array, just as you would with objects returned by PowerShell cmdlets, or C#, or objects exposed in languages like Python or Ruby. In fact, `InvokeGraphRequest` returns an object with a `Content` member that instead of exposing a JSON `string` like that returned by `Invoke-WebRequest` it emits objects deserialized from that JSON.
 
-So by building on REST + PowerShell, we have a natural object-oriented abstraction of the Graph, and this is a key part of the magic exposed by [PoshGraph](https://github.com/adamedx/poshgraph) in its mission to make the Graph accessible to anyone with a (Power) shell.
+So by building on REST + PowerShell, we have a natural object-oriented abstraction of the Graph, and this is a key part of the magic exposed by [AutoGraphPS](https://github.com/adamedx/autographps) in its mission to make the Graph accessible to anyone with a (Power) shell.
 
 ## Up next: step 2 -- getting the token
 In an upcoming post, we'll backtrack and explore the rather important piece of the story we left out -- getting an access token. Without it, we can't make any calls to the Graph API.
