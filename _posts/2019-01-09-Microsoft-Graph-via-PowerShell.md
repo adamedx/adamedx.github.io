@@ -6,7 +6,7 @@ tags: powershell microsoft-graph autographps aad-graph powershell-graph msgraph 
 ---
 *This is the second post in a series on PowerShell and the Graph.*
 
-In this series' first post, we showed how easy it is to make a call to the Graph REST API -- *once you've acquired an access token*. In this edition we'll show what it takes to get a token. It's certainly more complicated than just calling the Graph API.
+In this series' [first post](2018-08-08-Microsoft-Graph-via-PowerShell.md), we showed how easy it is to make a call to the Graph REST API -- *once you've acquired an access token*. In this edition we'll show what it takes to get a token. It's certainly more complicated than just calling the Graph API.
 
 ## How to get an access token
 
@@ -98,9 +98,11 @@ Now we can put the URI and the body together and actually make the request as in
     $tokenResponse = invoke-webrequest -method POST -usebasicparsing -uri $tokenUri -body $tokenRequestBody -headers @{'Content-Type'='application/x-www-form-urlencoded'} -erroraction stop
 ```
 
-That's it -- a 200 response will include an [idtoken](https://www.oauth.com/oauth2-servers/openid-connect/id-tokens/), [refresh token](https://auth0.com/learn/refresh-tokens/), and our core goal in this exercies, the [access token](https://www.oauth.com/oauth2-servers/access-tokens/).
+That's it -- a 200 response will include an [idtoken](https://www.oauth.com/oauth2-servers/openid-connect/id-tokens/), [refresh token](https://auth0.com/learn/refresh-tokens/), and our core goal in this exercise, the [access token](https://www.oauth.com/oauth2-servers/access-tokens/).
 
-The response itself is in JSON, and contains all 3 tokens, so in the sample we deserialize it to more easily get at the access token, using something like the following:
+### Step 2d: Deserialize the access token in the response
+
+The response itself is in JSON, and contains all 3 (id, access, and refresh) tokens, so in the sample we deserialize it to more easily get at the access token, using something like the following:
 
 ```powershell
 $tokens = $tokenResponse | ConvertFrom-JSON $tokenResponse
@@ -108,7 +110,10 @@ $tokens = $tokenResponse | ConvertFrom-JSON $tokenResponse
 
 Now the tokens are deserialized into `$tokens`, and the access token may be referenced via `$tokens.access_token`.
 
-With the access token in hand, we may now use this to make REST calls to Microsoft Graph (i.e. in our example `https://graph.microsoft.com`). As you recall from the initial post in this series, we need to pass this access token in the `Authorization` header of every REST request. If we've deserialized the tokens into a variable called `$tokens`, we can use `Invoke-WebRequest` to make the authorized REST call:
+### Step 3: Invoke-WebRequest
+We've already covered this in the [first post](2018-08-08-Microsoft-Graph-via-PowerShell.md) using a helper function, here we'll just go over it again to clarify the direct usage of our hard-won token with `Invoke-WebRequest` -- note that this is the easy part.
+
+With the access token in hand, we may now use it to make REST calls to Microsoft Graph (i.e. in our example `https://graph.microsoft.com`). As you recall from the [original post](2018-08-08-Microsoft-Graph-via-PowerShell.md) in this series, we need to pass this access token in the `Authorization` header of every REST request. If we've deserialized the tokens into a variable called `$tokens`, we can use `Invoke-WebRequest` to make the authorized REST call:
 
 ```powershell
 $requestHeaders = @{
