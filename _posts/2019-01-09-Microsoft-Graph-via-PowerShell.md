@@ -1,8 +1,8 @@
 ---
 title: "Microsoft Graph via PowerShell Part 2"
-date: 2018-11-20 21:00:00 -0700
+date: 2019-01-09 21:00:00 -0700
 categories: softwarengineering
-tags: powershell microsoft-graph poshgraph aad-graph powershell-graph msgraph azure
+tags: powershell microsoft-graph autographps aad-graph powershell-graph msgraph azure
 ---
 *This is the second post in a series on PowerShell and the Graph.*
 
