@@ -6,7 +6,7 @@ tags: powershell microsoft-graph autographps aad-graph powershell-graph msgraph 
 ---
 *This is the second post in a series on PowerShell and the Graph.*
 
-In this series' [first post](2018-08-08-Microsoft-Graph-via-PowerShell.md), we showed how easy it is to make a call to the Graph REST API -- *once you've acquired an access token*. In this edition we'll show what it takes to get a token. It's certainly more complicated than just calling the Graph API.
+In this series' [first post]({{ site.baseurl }}{% post_url 2018-08-08-Microsoft-Graph-via-PowerShell %}), we showed how easy it is to make a call to the Graph REST API -- *once you've acquired an access token*. In this edition we'll show what it takes to get a token. It's certainly more complicated than just calling the Graph API.
 
 ## How to get an access token
 
@@ -17,7 +17,7 @@ $accessInfo = GetGraphAccessToken # step 2
 ```
 
 Let's look at the implementation of `GetGraphAccessToken` -- all but the last line below are [excerpted from the sample](https://github.com/adamedx/PowerShellGraphDemo/blob/v1.0.0/PowerShellGraphDemo.ps1#L262):
-
+](
 ```powershell
     # Get the authorization code -- step 2a
     $authCodeUri = GetAuthCodeUri $appId $redirectUri $graphUri $graphScopes $logonEndpoint
@@ -111,9 +111,9 @@ $tokens = $tokenResponse | ConvertFrom-JSON $tokenResponse
 Now the tokens are deserialized into `$tokens`, and the access token may be referenced via `$tokens.access_token`.
 
 ### Step 3: Invoke-WebRequest
-We've already covered this in the [first post](2018-08-08-Microsoft-Graph-via-PowerShell.md) using a helper function, here we'll just go over it again to clarify the direct usage of our hard-won token with `Invoke-WebRequest` -- note that this is the easy part.
+We've already covered this in the [first post]({{ site.baseurl }}{% post_url 2018-08-08-Microsoft-Graph-via-PowerShell %}) using a helper function, here we'll just go over it again to clarify the direct usage of our hard-won token with `Invoke-WebRequest` -- note that this is the easy part.
 
-With the access token in hand, we may now use it to make REST calls to Microsoft Graph (i.e. in our example `https://graph.microsoft.com`). As you recall from the [original post]({{ site.baseurl }}{% post_url 2018-08-08-Microsoft-Graph-via-PowerShell %}) in this series, we need to pass this access token in the `Authorization` header of every REST request. If we've deserialized the tokens into a variable called `$tokens`, we can use `Invoke-WebRequest` to make the authorized REST call:
+With the access token in hand, we may now use it to make REST calls to Microsoft Graph (i.e. in our example `https://graph.microsoft.com`). As you'll recall from the [original post]({{ site.baseurl }}{% post_url 2018-08-08-Microsoft-Graph-via-PowerShell %}) in this series, we need to pass this access token in the `Authorization` header of every REST request. If we've deserialized the tokens into a variable called `$tokens`, we can use `Invoke-WebRequest` to make the authorized REST call:
 
 ```powershell
 $requestHeaders = @{
