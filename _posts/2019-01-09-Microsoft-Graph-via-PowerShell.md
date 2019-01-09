@@ -8,7 +8,7 @@ tags: powershell microsoft-graph autographps aad-graph powershell-graph msgraph 
 
 In this series' first post, we showed how easy it is to make a call to the Graph REST API -- *once you've acquired an access token*. In this edition we'll show what it takes to get a token. It's certainly more complicated than just calling the Graph API.
 
-## Get the token
+## How to get an access token
 
 In the previous article about making an end-to-end call to Graph, we referred to one of the commands in the [sample](https://github.com/adamedx/PowerShellGraphDemo):
 
@@ -34,7 +34,7 @@ Let's look at the implementation of `GetGraphAccessToken` -- all but the last li
     ($tokenResponse.content | convertfrom-json).access_token
 ```
 
-## Step 2a: Get the auth code -- UX required
+### Step 2a: Get the auth code -- UX required
 The first step may be the most difficult. It starts off simply enough: the method `GetAuthcodeUri` generates a URI for the authorize endpoint. A `POST` to this URI will return a response that contains the auth code required for this part of the Oauth2 protocoal. The base of this URI is just Azure Active Directory's logon endpoint, 'https://login.microsoftonline.com'. It is followed by a segment that is the tenant in which our user resides -- we'll use the `common` tenant, which means it can request an auth code for any tenant OR even a non-AAD Microsoft Account (MSA, e.g. outlook.com, hotmail.com, etc. user). This is followed by `oauth2/nativeclient`. The remainder of the URI allows us to specify the parameters particular to our usage:
 
 * **AppID (aka `clientid`):** We must specify the id of the application we registered back in [Step1].
@@ -50,7 +50,7 @@ You can use your favorite string building / formatting technique to generate the
 https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=53316905-a6e5-46ed-b0c9-524a2379579e&response_type=code&redirect_uri=https://login.microsoftonline.com/common/oauth2/nativeclient&response_mode=fragment&scope=openid offline_access https://graph.microsoft.com/user.read&state=49d18579-76a9-4bbc-a826-78a69a72a2f1&nonce=Kv7XrTo2ReRkNitZJw01MCNGOmv Q7fibzpC4vr41sew=&prompt=login
 ```
 
-### Show the sign-in page
+### Step 2b: Show the sign-in page
 The next part is more involved. The call to `GetAuthCodeInfo` will retrieve the authcode. This is accomplished by making a `POST` to the URI we just constructed. The HTML from the response to that request will render a user interface for the user to sign in and safely communicate proof of that user's identity to the logon authority. The result of the user's successful authentication is an OAuth2 authorization code.
 
 This means though that we need to render any returned HTML and allow the user to interact with it, and also intercept the response. It might be tempting to believe we could implement a custom UX here, however the HTML returned from the authorize endpoint contains more than just nicely formatted input fields for usernames and passwords. This UX also provides protections against spoofing and phishing attacks and in general keeps the input of passwords safe from other applications in the local device or network. However, it is an HTML page, so we need to show it in a browser, right?
@@ -70,7 +70,7 @@ The remaining code in that function configures the browser object so it can show
 
 With this auth code in hand, we can move to the next step, which is to retrieve an actual access token.
 
-## Get the token
+### Step 2c: Request the access token
 
 Getting the token is relatively easy -- just `POST` to the token endpoint with a body that contains the auth code, application id, and scopes. The token URI is just
 
