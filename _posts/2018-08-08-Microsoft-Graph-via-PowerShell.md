@@ -45,7 +45,7 @@ Since the sample defaults to using a pre-registered application, you'll be able 
 Note that for your own app ID to work with this sample, you must add the "native" platform when you configure the application on the portal -- the sample uses a native authentication flow as opposed to one of the "web" flows. Web flows require that the application itself prove its identity, and that's not something the sample does (it relies only on the user's proof of identity when obtaining an access token).
 
 ### Step 2: Get your access token
-This part is worth a post in its own right -- we'll cover this in the next post. For now, we'll treat this as a black box -- to follow along in the next sections, assume we've executed the following command to obtain an access token:
+This part is a worthy topic in its own right -- we'll cover it in detail in the next post. For now, we'll treat this as a black box -- to follow along in the next sections, assume we've executed the following command to obtain an access token:
 
 ```
 $token = (GetGraphAccessToken).Token # step 2
@@ -68,7 +68,7 @@ VERBOSE: received -1-byte response of content type
 application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false;charset=utf-8
 ```
 
-From this we see that `Invoke-WebRequest` performs the following functions to make the Graph call:
+From this we see that `InvokeGraphRequest` performs the following functions to make the Graph call:
 
 1. Generates a URI based off of `https://graph.microsoft.com` to save you some typing
 2. Sets the appropriate content header and importantly sets the `Authorization` header to the value of the passed via the  `-GraphAccessToken` option -- witout the token, the call would fail with an `unauthorized` error.
@@ -117,7 +117,7 @@ The more readable appearance when emitting objects to the console is not simply 
 echo $response.Content.jobTitle >> MyJobs.txt
 ```
 
-You can access members or elements of the response using `.` or `[]` notation if the object is an array, just as you would with objects returned by PowerShell cmdlets, or C#, or objects exposed in languages like Python or Ruby. In fact, `InvokeGraphRequest` returns an object with a `Content` member that instead of exposing a JSON `string` like that returned by `Invoke-WebRequest` it emits objects deserialized from that JSON.
+You can access members or elements of the response using `.` or `[]` notation if the object is an array, just as you would with objects returned by PowerShell cmdlets, or C#, or objects exposed in languages like Python or Ruby. In fact, `InvokeGraphRequest` returns an object with a `Content` member that instead of exposing a JSON `string` like that returned by `Invoke-WebRequest` emits objects deserialized from that JSON.
 
 So by building on REST + PowerShell, we have a natural object-oriented abstraction of the Graph, and this is a key part of the magic exposed by [AutoGraphPS](https://github.com/adamedx/autographps) in its mission to make the Graph accessible to anyone with a (Power) shell.
 
