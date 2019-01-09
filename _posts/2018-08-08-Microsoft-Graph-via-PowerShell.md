@@ -122,7 +122,7 @@ You can access members or elements of the response using `.` or `[]` notation if
 So by building on REST + PowerShell, we have a natural object-oriented abstraction of the Graph, and this is a key part of the magic exposed by [AutoGraphPS](https://github.com/adamedx/autographps) in its mission to make the Graph accessible to anyone with a (Power) shell.
 
 ## Up next: step 2 -- getting the token
-In an upcoming post, we'll backtrack and explore the rather important piece of the story we left out -- getting an access token. Without it, we can't make any calls to the Graph API.
+In an [upcoming post]({{ site.baseurl }}{% post_url 2019-01-09-Microsoft-Graph-via-PowerShell %}), we'll backtrack and explore the rather important piece of the story we left out -- getting an access token. Without it, we can't make any calls to the Graph API.
 
 It turns out that as easy as it was to invoke the API once we had the token, obtaining a token is much more involved -- it's not just a simple wrapper on top of an existing PowerShell cmdlet unfortunately.
 
