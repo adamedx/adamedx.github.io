@@ -100,7 +100,7 @@ Let's compare the MSAL vs. non-MSAL cases:
 
 In summary, by using MSAL we remove the maintenance cost of the ~150 lines (and ultimately more than that) of PowerShell code in exchange for a dependency on MSAL and a handful of lines of wrapper code. **From this standpoint it's difficult to justify NOT using MSAL.**
 
-About the only improvement we could make on MSAL is if it were integrated directly into the default PowerShell distribution and exposed as a cmdlet rather than a .NET type. And even with that, we'd save only about 4 lines of code, i.e. the following 4 lines which are the only essential parts of `Get-GraphAccessTokenFromMSAL' in [Get-GraphTokenFromMSAL.ps1](https://github.com/adamedx/PowerShellGraphDemo/blob/v1.1.0/Get-GraphAccessTokenFromMSAL.ps1) (the remaining 40 or so lines of that file consists of comments, one-time installation code, and some parameterization to make the method more generic):
+About the only improvement we could make on MSAL is if it were integrated directly into the default PowerShell distribution and exposed as a cmdlet rather than a .NET type. And even with that, we'd save only about 4 lines of code, i.e. the following 4 lines which are the only essential parts of `Get-GraphAccessTokenFromMSAL` in [Get-GraphTokenFromMSAL.ps1](https://github.com/adamedx/PowerShellGraphDemo/blob/v1.1.0/Get-GraphAccessTokenFromMSAL.ps1) (the remaining 40 or so lines of that file consists of comments, one-time installation code, and some parameterization to make the method more generic):
 
 ```powershell
 [System.Reflection.Assembly]::LoadFrom((gi $psscriptroot/lib/Microsoft.Identity.Client.*/lib/net45/Microsoft.Identity.Client.dll).fullname) | out-null # Step 1
