@@ -16,8 +16,8 @@ In the previous article about making an end-to-end call to Graph, we referred to
 $accessInfo = GetGraphAccessToken # step 2
 ```
 
-Let's look at the implementation of `GetGraphAccessToken` -- all but the last line below are [excerpted from the sample](https://github.com/adamedx/PowerShellGraphDemo/blob/v1.1.0/PowerShellGraphDemo.ps1#L262):
-](
+Let's look at the implementation of `GetGraphAccessToken` -- all but the last line below are [excerpted from the sample](https://github.com/adamedx/PowerShellGraphDemo/blob/v1.1.0/PowerShellGraphDemo.ps1#L154):
+
 ```powershell
     # Get the authorization code -- step 2a
     $authCodeUri = GetAuthCodeUri $appId $redirectUri $graphUri $graphScopes $logonEndpoint
@@ -152,6 +152,6 @@ The [Microsoft Authentication Library (MSAL)](https://github.com/AzureAD/microso
 
 All of this sounds great, of course, though MSAL was designed for .Net applications, not PowerShell. Fortunately, any .Net component is usable, typically quite easily, from PowerShell.
 
-So for our next and final post, we'll show how to use MSAL to accomplish everything we covered in the demo script. That part at least is short enough that in terms of code obtaining the token will be only a small part of the experience -- as it should be.
+So for our [next and final post]({{ site.baseurl }}{% post_url 2019-01-14-Microsoft-Graph-via-PowerShell %}), we'll show how to use MSAL to accomplish everything we covered in the demo script. That part at least is short enough that in terms of code obtaining the token will be only a small part of the experience -- as it should be.
 
 
