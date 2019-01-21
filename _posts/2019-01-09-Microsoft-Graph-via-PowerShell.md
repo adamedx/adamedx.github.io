@@ -16,7 +16,7 @@ In the previous article about making an end-to-end call to Graph, we referred to
 $accessInfo = GetGraphAccessToken # step 2
 ```
 
-Let's look at the implementation of `GetGraphAccessToken` -- all but the last line below are [excerpted from the sample](https://github.com/adamedx/PowerShellGraphDemo/blob/v1.0.0/PowerShellGraphDemo.ps1#L262):
+Let's look at the implementation of `GetGraphAccessToken` -- all but the last line below are [excerpted from the sample](https://github.com/adamedx/PowerShellGraphDemo/blob/v1.1.0/PowerShellGraphDemo.ps1#L262):
 ](
 ```powershell
     # Get the authorization code -- step 2a

@@ -18,20 +18,22 @@ First, there is already a good write-up on how one can [access Graph from PowerS
 The sample provides cmdlets that allow you to invoke any Graph method by specifying its URI (e.g. `https://graph.microsoft.com/v1.0/me`). The cmdlets will also return the JSON in raw form or as deserializeed PowerShell objects. In itself this can function as a primitive "PowerShell Graph SDK." This forms the basis of [AutoGraphPS](https://github.com/adamedx/autographps). Here's the recipe from the demo:
 
 1. [Register an Azure Active Directory application](https://apps.dev.microsoft.com) (one time only)
-2. [Get an access token](https://github.com/adamedx/PowerShellGraphDemo/blob/133a1e0c2859abc8bcf31da3ce9c9372f2eb4dd3/PowerShellGraphDemo.ps1#L226) at runtime for your application with permissions for the call you'd like to make
-3. [Make a REST request to the documented Graph URI](https://github.com/adamedx/PowerShellGraphDemo/blob/133a1e0c2859abc8bcf31da3ce9c9372f2eb4dd3/PowerShellGraphDemo.ps1#L227) using the relevant verb with the `Authorization` header set to the access token and the JSON body containing any appropriate parameters
-4. [Convert any JSON from the response](https://github.com/adamedx/PowerShellGraphDemo/blob/133a1e0c2859abc8bcf31da3ce9c9372f2eb4dd3/PowerShellGraphDemo.ps1#L228) to easy to manipulate PowerShell objects
+2. [Get an access token](https://github.com/adamedx/PowerShellGraphDemo/blob/v1.1.0/PowerShellGraphDemo.ps1#L257) at runtime for your application with permissions for the call you'd like to make
+3. [Make a REST request to the documented Graph URI](https://github.com/adamedx/PowerShellGraphDemo/blob/v1.1.0/PowerShellGraphDemo.ps1#L258) using the relevant verb with the `Authorization` header set to the access token and the JSON body containing any appropriate parameters
+4. [Convert any JSON from the response](https://github.com/adamedx/PowerShellGraphDemo/blob/v1.1.0/PowerShellGraphDemo.ps1#L259) to easy to manipulate PowerShell objects
 
 ## How it works -- overview
 The first step is done only once, and is essentially manual. After that, steps 2-4 are captured in the sample below that uses the cmdlets from the sample to against the URI `https://graph.microsoft.com/v1.0/me`:
 
 ```
+# Assumes you've cloned this repository and dot-sourced PowerShellGraphDemo.ps1, i.e.
+# . ./PowerShellGraphDemo.ps1
 $accessInfo = GetGraphAccessToken # step 2
-$result = InvokeGraphRequest $accessInfo.GraphUri $accessInfo.token v1.0/me # step 3
+$result = InvokeGraphRequest me -GraphBaseUri $accessInfo.GraphUri -GraphAccessToken $accessInfo.token # step 3
 $result.content # step 4
 ```
 
-You can actually follow the [instructions](https://github.com/adamedx/PowerShellGraphDemo/blob/master/README.md) in the sample repository and then execute the above commands if you have an Azure Active Directory (AAD) account or Microsoft Account (MSA). When you run it, you'll be prompted to provide credentials for the account to sign in. After a successful sign-in, the Graph API will be invoked and you'll get back a `2xx` response containing the output from the call. In this case, the output is the profile information (e.g. name, email address, etc.) of the user who signed in. This will work for any Graph URI, not just this particular profile API URI.
+You can actually follow the [instructions](https://github.com/adamedx/PowerShellGraphDemo/blob/master/README.md) in the sample repository to clone it locally, dot-source `PowerShellGraphDemo.ps1`, and then execute the above commands if you have an Azure Active Directory (AAD) account or Microsoft Account (MSA). When you run it, you'll be prompted to provide credentials for the account to sign in. After a successful sign-in, the Graph API will be invoked and you'll get back a `2xx` response containing the output from the call. In this case, the output is the profile information (e.g. name, email address, etc.) of the user who signed in. This will work for any Graph URI, not just this particular profile API URI.
 
 Note that if you try it with a different URI, you must specify it by leaving off the leading `https://graph.microsoft.com` part of the URI and only specify the path relative to that, i.e. in the example above `v1.0/me`. You must also have a token with the [right permissions](https://developer.microsoft.com/en-us/graph/docs/concepts/permissions_reference) for the part of the Graph you're accessing.
 
@@ -45,7 +47,7 @@ Since the sample defaults to using a pre-registered application, you'll be able 
 Note that for your own app ID to work with this sample, you must add the "native" platform when you configure the application on the portal -- the sample uses a native authentication flow as opposed to one of the "web" flows. Web flows require that the application itself prove its identity, and that's not something the sample does (it relies only on the user's proof of identity when obtaining an access token).
 
 ### Step 2: Get your access token
-This part is a worthy topic in its own right -- we'll cover it in detail in the next post. For now, we'll treat this as a black box -- to follow along in the next sections, assume we've executed the following command to obtain an access token:
+This part is a worthy topic in its own right -- we'll cover it in detail in the [next post]({{ site.baseurl }}{% post_url 2019-01-09-Microsoft-Graph-via-PowerShell %}). For now, we'll treat this as a black box -- to follow along in the next sections, assume we've executed the following command to obtain an access token:
 
 ```
 $token = (GetGraphAccessToken).Token # step 2
@@ -56,13 +58,13 @@ $token = (GetGraphAccessToken).Token # step 2
 To understand the sample, we'll start with step 3 where we make the REST request. Consider the following invocation of the sample's `InvokeGraphRequest` cmdlet to access `https://graph.microsoft.com/v1.0/me`, i.e. the basic profile information of the caller. Here we assume that the token from step 2 has been retrieved and is available in a variable called `$token` by calling `GetGraphAccessToken` or an equivalent command:
 
 ```
-InvokeGraphRequest -GraphBaseUri https://graph.microsoft.com -GraphRelativeUri v1.0/me -GraphAccessToken $token # step 3
+InvokeGraphRequest me -GraphBaseUri https://graph.microsoft.com -GraphAccessToken $token # step 3
 ```
 
 If you examine the code for `InvokeGraphRequest`, it really is just a wrapper around PowerShell's built-in `Invoke-WebRequest` cmdlet. You can see this if you re-run the above command with the `-verbose` option:
 
 ```
-PS> $response = InvokeGraphRequest -GraphBaseUri https://graph.microsoft.com -GraphRelativeUri v1.0/me -GraphAccessToken $token -verbose
+PS> $response = InvokeGraphRequest me -GraphBaseUri https://graph.microsoft.com -GraphAccessToken $token -verbose
 VERBOSE: GET https://graph.microsoft.com/v1.0/me with 0-byte payload
 VERBOSE: received -1-byte response of content type
 application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false;charset=utf-8
