@@ -68,7 +68,7 @@ $asyncResult = $authContext.AcquireTokenAsync([System.Collections.Generic.List[s
 $token = $asyncResult.Result # 3b
 ```
 
-The first line starts the call and stores a reference to it in `$asyncResult`. As input to `AcquireTokenAsync`, we must pass the permission scopes -- because the method requires the .NET type `[System.Collections.Generic.List<string>]`, we must cast the PowerShell array `$graphScopes` to that type, using PowerShell's syntax for that type `[System.Collections.Generic.List[string]]`.
+The first line starts the call and stores a reference to it in `$asyncResult`. As input to `AcquireTokenAsync`, we must pass the permission scopes -- because the method requires the .NET type `[System.Collections.Generic.List<string>]`, we must cast the PowerShell array `$graphScopes` to that type, using PowerShell's cast syntax `[System.Collections.Generic.List[string]]`.
 
 The second line waits for the call referenced by `$asyncResult` to complete and retrieves the result and assigns it to the variable `$token`. Note these lines are what will trigger a browser UX to be shown for you to sign in.
 

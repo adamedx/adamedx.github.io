@@ -17,7 +17,7 @@ First, there is already a good write-up on how one can [access Graph from PowerS
 
 The sample provides cmdlets that allow you to invoke any Graph method by specifying its URI (e.g. `https://graph.microsoft.com/v1.0/me`). The cmdlets will also return the JSON in raw form or as deserializeed PowerShell objects. In itself this can function as a primitive "PowerShell Graph SDK." This forms the basis of [AutoGraphPS](https://github.com/adamedx/autographps). Here's the recipe from the demo:
 
-1. [Register an Azure Active Directory application](https://apps.dev.microsoft.com) (one time only)
+1. [Register an Azure Active Directory application](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app) (one time only)
 2. [Get an access token](https://github.com/adamedx/PowerShellGraphDemo/blob/v1.1.0/PowerShellGraphDemo.ps1#L257) at runtime for your application with permissions for the call you'd like to make
 3. [Make a REST request to the documented Graph URI](https://github.com/adamedx/PowerShellGraphDemo/blob/v1.1.0/PowerShellGraphDemo.ps1#L258) using the relevant verb with the `Authorization` header set to the access token and the JSON body containing any appropriate parameters
 4. [Convert any JSON from the response](https://github.com/adamedx/PowerShellGraphDemo/blob/v1.1.0/PowerShellGraphDemo.ps1#L259) to easy to manipulate PowerShell objects
@@ -40,7 +40,7 @@ Note that if you try it with a different URI, you must specify it by leaving off
 ### Step 1: Register your application
 In order to understand the sample, you can skip this section on app registration altogether. The remainder of the section is here simply to satisfy your curiosity -- if you're new to Graph or Azure Active Directory applications, this topic may be more meaningful after you've read all the posts in the series.
 
-Before your code can access Graph, it must obtain an access token, and a prerequisite for this is for your code to identify itself with a unique *application ID*. The application ID is obtained by performing a one-time registration in the [Application Registration Portal](https://graph.microsoft.com).
+Before your code can access Graph, it must obtain an access token, and a prerequisite for this is for your code to identify itself with a unique *application ID*. The application ID is obtained by performing a one-time registration in the [Application Registration Portal](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app).
 
 Since the sample defaults to using a pre-registered application, you'll be able to run it as-is without performing your own app registration. If you are curious or want to use this code beyond learning about Graph, you can visit the aforementioned portal to obtain an application ID; the sample cmdlets include a parameter that allows you to use your own registered application ID rather than the default built into the sample.
 
