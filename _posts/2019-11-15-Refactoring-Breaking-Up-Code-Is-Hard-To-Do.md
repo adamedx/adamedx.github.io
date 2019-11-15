@@ -1,12 +1,12 @@
 ---
-title: "Refactoring: Breaking Up Code Is Hard To Do"
+title: "Refactoring: Breaking up code is hard to do"
 date: 2019-11-15 06:05:00 -0700
 categories: softwareengineering
 tags: powershell scriptclass autographps
 ---
 Wow, no posts in *months*, but it's not just because I'm a bad blogger. I was heads-down (as much as you can be on a side-project) refactoring one of my experiments, [ScriptClass](https://github.com/adamedx/scriptclass). It's done now (whew!), so I can share what I've learned.
 
-First, what is this *ScriptClass* thing? Briefly, it's an attempt to address my contention that while [PowerShell 5.0's](https://powershell.org)'s `class` keyword is a great implementation of object-oriented types for .NET, it is not great at all for the PowerShell language. I developed *ScriptClass* because I needed it for the PowerShell projects I truly wanted to build, [AutoGraphPS](https://github.com/adamedx/autographps) and [AutoGraphPS-SDK](https://github.com/adamedx/autographps-sdk).
+First, what is this *ScriptClass* thing? Briefly, it's an attempt to address my contention that while [PowerShell 5.0's](https://powershell.org)'s `class` keyword is a great implementation of object-oriented types for .NET, it is not great at all for *PowerShell* (the language). I developed *ScriptClass* because I needed it for the PowerShell projects I truly wanted to build, [AutoGraphPS](https://github.com/adamedx/autographps) and [AutoGraphPS-SDK](https://github.com/adamedx/autographps-sdk).
 
 I can go into exactly *why* I needed *ScriptClass* some other time; for now, I'll share the highlights of getting it into a good state.
 
@@ -26,9 +26,9 @@ Other than my bus commute, weekends were the only time for me to make progress o
 * September (end): Refactor complete -- released new versions of *AutoGraphPS* and *AutoGraphPS-SDK*, both based on the refactored *ScriptClass*. It works!
 * October: Ok, now I can finally get started on that big feature I wanted to add back in March...
 
-**Total refactor time:** ~ 6 months.
+**Total refactor time: ~ 6 months**
 
-And yes, you read that correctly: the feature that originally triggered this 6 month journey is *still* not yet implemented!
+And yes, you read that correctly: the feature that originally triggered this half-year journey is *still* not yet implemented!
 
 ## Was it worth it?
 
@@ -40,6 +40,6 @@ So after all that, what was the point? At the cost of 6 months of weekends, I've
 
 ## Now on to the real fun
 
-At the end, I felt great about finishing what looked like a fairly daunting set of changes. I can sit back and breathe a sigh of relief, play with the projects, admire the code, and get back to scheming about adding bringing life to Graph types in PowerShell.
+At the end, I felt great about finishing what looked like a daunting set of changes. I can sit back and breathe a sigh of relief, play with the projects, admire the code, and get back to scheming about adding bringing life to Graph types in PowerShell.
 
 This time, let's just hope it takes less than 6 months.
