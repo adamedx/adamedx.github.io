@@ -6,7 +6,7 @@ tags: powershell scriptclass autographps
 ---
 Wow, no posts in *months*, but it's not just because I'm a bad blogger. I was heads-down (as much as you can be on a side-project) refactoring one of my experiments, [ScriptClass](https://github.com/adamedx/scriptclass). It's done now (whew!), so I can share what I've learned.
 
-First, what is this *ScriptClass* thing? Briefly, it's an attempt to address my contention that while [PowerShell 5.0's](https://powershell.org)'s `class` keyword is a great implementation of object-oriented types for .NET, it is not great at all for *PowerShell* (the language). I developed *ScriptClass* because I needed it for the PowerShell projects I truly wanted to build, [AutoGraphPS](https://github.com/adamedx/autographps) and [AutoGraphPS-SDK](https://github.com/adamedx/autographps-sdk).
+But first, what is this *ScriptClass* thing? Briefly, it's an attempt to address my contention that while [PowerShell 5.0](https://powershell.org)'s `class` keyword is a great implementation of object-oriented types for .NET, it is not great at all for *PowerShell* (the language). I developed *ScriptClass* because I needed it for the PowerShell projects I truly wanted to build, [AutoGraphPS](https://github.com/adamedx/autographps) and [AutoGraphPS-SDK](https://github.com/adamedx/autographps-sdk).
 
 I can go into exactly *why* I needed *ScriptClass* some other time; for now, I'll share the highlights of getting it into a good state.
 
