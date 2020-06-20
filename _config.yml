@@ -1,3 +1,5 @@
 name: adamedx
 theme: jekyll-theme-midnight
 markdown: kramdown
+kramdown:
+    auto_ids: true

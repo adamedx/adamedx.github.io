@@ -1,28 +1,25 @@
 ---
 title: "Juneteenth and the master branch overthrow"
 date: 2020-06-19 23:00:00 -0700
-categories: Juneteenth history freedom code engineering
+categories: softwareengineering
+tags: Juneteenth history freedom code engineering
 ---
 
 Yesterday was [Juneteenth](https://www.theroot.com/what-is-juneteenth-1790896900), so I decided to finally get rid of the `master` branch in my most active `git` repositories. [Github](https://github.com) certainly made that easier as they [just announced they are eliminating `master` as the default branch name](https://www.theregister.com/2020/06/15/github_replaces_master_with_main/). In fact, they are adopting naming standard I had considered long ago, that of using the more descriptive term *main.*
 
-
 **You can and should do the same thing in your repositories** -- it was pretty easy for me, and I'm [sharing those steps below](#How-to-rename-master-to-main).
-
 
 ## Why does it even matter?
 
 Before getting to those renaming steps, you might ask why bother with such cosmetic changes regarding terminology when we have the [real and constant oppression caused by racism and white supremacy](https://www.raceforward.org/videos/systemic-racism) against the African diaspora and people of color generally? How does changing a name, particularly in a case like this one where there is no evidence that the use of `master`, which likely [originated in a non-American context of OSS software developers](https://en.wikipedia.org/wiki/Git#History) where English was not the first language, was informed by conscious our unconscious white supremacy?
 
-
 Here are my answers:
-
 
 * It's true renaming `master` to `main` (or `root` or `trunk` or `default` or `primary`, whatever) doesn't fix racism.
 * Renaming terms and classifying terms like `master` as problematic sends a message that **racism requires active participation from everyone to stamp out**:
   * It acknowledges that racism exists
   * It acknowledges that it causes ongoing and terrible suffering
-  * It acknowledges that racism even infects our shared languauge and terminology
+  * It acknowledges that racism even infects our shared language and terminology
   * It acknowledges that oppressed people are being constantly reminded of their oppression by this infected and we are somehow expected to be ok with that and treat it like it's no big deal
   * It acknowledges that racism isn't just some external force we're helpless against like the weather, it is ultimately driven by us individually in this racist system
   * It acknowledges that racism is so much *everyone's* problem, not just Black people's
