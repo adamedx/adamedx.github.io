@@ -6,13 +6,17 @@ categories: Juneteenth history freedom code engineering
 
 Yesterday was [Juneteenth](https://www.theroot.com/what-is-juneteenth-1790896900), so I decided to finally get rid of the `master` branch in my most active `git` repositories. [Github](https://github.com) certainly made that easier as they [just announced they are eliminating `master` as the default branch name](https://www.theregister.com/2020/06/15/github_replaces_master_with_main/). In fact, they are adopting naming standard I had considered long ago, that of using the more descriptive term *main.*
 
-**You can and should do the same thing in your repositories** -- it was pretty easy for me, and I'm [sharing those steps below](#How_to_rename_master_to_main).
+
+**You can and should do the same thing in your repositories** -- it was pretty easy for me, and I'm [sharing those steps below](#How-to-rename-master-to-main).
+
 
 ## Why does it even matter?
 
 Before getting to those renaming steps, you might ask why bother with such cosmetic changes regarding terminology when we have the [real and constant oppression caused by racism and white supremacy](https://www.raceforward.org/videos/systemic-racism) against the African diaspora and people of color generally? How does changing a name, particularly in a case like this one where there is no evidence that the use of `master`, which likely [originated in a non-American context of OSS software developers](https://en.wikipedia.org/wiki/Git#History) where English was not the first language, was informed by conscious our unconscious white supremacy?
 
+
 Here are my answers:
+
 
 * It's true renaming `master` to `main` (or `root` or `trunk` or `default` or `primary`, whatever) doesn't fix racism.
 * Renaming terms and classifying terms like `master` as problematic sends a message that **racism requires active participation from everyone to stamp out**:
