@@ -1,0 +1,11 @@
+{
+  "client_id": "https://adamedx.github.io/bsky/bsky_ps_client_id.json",
+  "client_name": "PowerShell tools for BlueSky",
+  "redirect_uris": ["http://localhost"],
+  "client_uri": "https://github.com/adamedx",
+  "logo_uri" : "https://github.com/adamedx/autographps/blob/5e154c1fb03d3074d59f429639936f50a1b76dd3/assets/PoshGraphIcon.png",
+  "tos_uri" : "https://github.com/adamedx/autographps/blob/main/TERMS.md",
+  "scope" : "atproto transition:generic",
+  "grant_types" : ["refresh_token","authorization_code"],
+  "response_types" : ["code"]
+}

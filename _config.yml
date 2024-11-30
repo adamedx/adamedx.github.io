@@ -6,3 +6,4 @@ kramdown:
 
 include:
   - .well-known
+  - bsky
