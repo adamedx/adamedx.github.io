@@ -8,7 +8,7 @@
   "application_type": "native",
   "logo_uri" : "https://github.com/adamedx/autographps/blob/5e154c1fb03d3074d59f429639936f50a1b76dd3/assets/PoshGraphIcon.png",
   "tos_uri" : "https://github.com/adamedx/autographps/blob/main/TERMS.md",
-  "scope" : "atproto transition:generic",
+  "scope" : "atproto transition:generic openid",
   "grant_types" : ["refresh_token","authorization_code"],
   "response_types" : ["code"]
 }
